@@ -1,41 +1,27 @@
 #pragma once
 #include "State.hpp"
 
-template <typename TContext, typename TEvent>
+namespace perillion::core {
+
 class StateMachine {
 public:
-    explicit StateMachine(TContext& context)
-        : context_(context), currentState_(nullptr) {}
+    void setState(State& newState) {
+        if (m_currentState) {
+            m_currentState->exit();
+        }
+        m_currentState = &newState;
+        m_currentState->enter();
+    }
 
-    void initialize(State<TContext, TEvent>* initialState) {
-        currentState_ = initialState;
-        if (currentState_) {
-            currentState_->enter(context_);
+    void process() {
+        if (m_currentState) {
+            m_currentState->process();
         }
     }
 
-    void transitionTo(State<TContext, TEvent>* nextState) {
-        if (currentState_) {
-            currentState_->exit(context_);
-        }
-        currentState_ = nextState;
-        if (currentState_) {
-            currentState_->enter(context_);
-        }
-    }
-
-    void processEvent(const TEvent& event) {
-        if (currentState_) {
-            currentState_->handleEvent(context_, event);
-        }
-    }
-
-    State<TContext, TEvent>* getCurrentState() const {
-        return currentState_;
-    }
-
-protected:
-    TContext& context_;
-    State<TContext, TEvent>* currentState_;
+private:
+    State* m_currentState = nullptr;
 };
+
+} // namespace perillion::core
 

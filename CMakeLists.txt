@@ -52,7 +52,7 @@ target_include_directories(perillion_lib PUBLIC
 enable_testing()
 
 add_executable(unit_tests
-    tests/test_main.cpp
+    tests/test_gpio.cpp
 )
 
 # Linkt gegen Catch2 UND unsere eigene Library
