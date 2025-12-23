@@ -12,11 +12,17 @@ include_directories(hal_mock)
 # Source files
 set(SOURCES_API
     api/IGpio.hpp
+    api/ITimer.hpp
+    api/IUart.hpp
 )
 
 set(SOURCES_HAL_MOCK
     hal_mock/MockGpio.hpp
     hal_mock/MockGpio.cpp
+    hal_mock/MockTimer.hpp
+    hal_mock/MockTimer.cpp
+    hal_mock/MockUart.hpp
+    hal_mock/MockUart.cpp
 )
 
 set(SOURCES_APP
