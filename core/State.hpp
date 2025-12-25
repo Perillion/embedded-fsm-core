@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STATE_HPP
+#define STATE_HPP
 
 namespace perillion::core {
 
@@ -12,3 +13,4 @@ public:
 
 } // namespace perillion::core
 
+#endif

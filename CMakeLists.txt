@@ -68,6 +68,7 @@ catch_discover_tests(unit_tests)
 # --- Application (Simulation) ---
 add_executable(PerillionSim
     app/main.cpp
+    app/AppStates.cpp
 )
 
 target_link_libraries(PerillionSim PRIVATE
